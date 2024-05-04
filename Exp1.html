@@ -1,0 +1,122 @@
+
+<html>
+<style>
+#form{
+background-color:#f2f2f2;
+padding:20px;
+}
+#xyz{
+    background-color:rgb(206, 213, 218)
+}
+#ppp{
+    padding-top: 200px;
+}
+#ck{
+padding-left:60px}
+#r1,#r2{ padding-top: 40px;padding-left: 40px;}
+</style>
+<head>
+<title>
+My Site
+</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<script>
+a=window.prompt("Give user name :");
+</script>
+<div class="container-fluid bg-secondary text-center">
+<div class="row">
+<div class="col-lg-4"><center>
+<img src="kec_img.jfif" alt="KEC" style="height:220px"></center>
+</div>
+<div class="col-lg-8">
+<p style="padding:25px">
+<h1 style="color:yellow">Hello!</h1>
+<h1 style="color:lightblue;font-size:30px;"><i style="color:White">Mr/Mrs : </i><script>document.write(a);</script></h1></p>
+</div>
+</div>
+</div><br><br>
+<div id="form">
+<form>
+<div class="container-fluid">
+<div class="row" id="xyz">
+<div class="col-lg-4" id="r1">
+Roll_no<br>
+<input type="text" id="name" name="Roll_no" required><br><br>
+Gender <br>
+<input type="radio" name="gender" required>
+<label>Male</label>
+<input type="radio" name="gender" required>
+<label>Female</label><br><br>
+Date of Birth<br>
+<input type="date" id="date" name="date" required><br><br>
+</div>
+<div class="col-lg-4" id="r2">
+Programme<br>
+<select name="dpt" id="dpt" required>
+    <option value="BE">Bachelor of Engineering</option>
+    <option value="Btech">Bachelor of Technology</option>
+    <option value="MBA">Master of Business Administration</option>
+</select><br><br>
+Dipartment - Section<br>
+<select name="dpt" id="dpt" required>
+    <option value="CSE">CSE</option>
+    <option value="IT">IT</option>
+    <option value="CSD">CSD</option>
+    <option value="AIML">AIML</option>
+    <option value="AIDS">AIDS</option>
+    <option value="none" default>NONE</option>
+  </select>
+<select name="year" id="year" required>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+  </select><br><br><br>Sum = <lable id="sum"></lable>
+</div>
+<div class="col-lg-4" style="background-color:rgb(110, 119, 122);"><center>
+    Marks<br>
+    Subject 1:
+    <input type="number" id="m1" min="1" max="100" step="1" required><br><br>
+    Subject 2:
+    <input type="number" id="m2" min="1" max="100" step="1" required><br><br>
+    Subject 3:
+    <input type="number" id="m3" min="1" max="100" step="1" required><br><br>
+    Subject 4:
+    <input type="number" id="m4" min="1" max="100" step="1" required><br><br>
+    Subject 5:
+    <input type="number" id="m5" min="1" max="100" step="1" required><br><br>
+    </div>
+</div>
+</div></div>
+<div id="ck">
+<input type="checkbox" id="d1" name="d1" required>
+<label for="d1"> I asure that the given Infermation about me is True</label><br>
+<input type="checkbox" id="d2" name="d2" required>
+<label for="d2"> I asure that the marks are verified and no changes are required</label><br>
+<input type="checkbox" id="d3" name="d3" required>
+<label for="d3"> I accept all the tearms and conditions.</label><br>
+<br>
+</div>
+<center>
+    <button onclick="add()" link="file:///C:/Users/Student/Documents/22CSR031/tq1.html">Verify</button></center>
+    <br><br><br>
+</form>
+
+<br>
+</body>
+<script>
+    x=document.getElementById("sum");
+    function add()
+    {
+        var a=Number(m1.value);
+        var b=Number(m2.value);
+        var c=Number(m3.value);
+        var d=Number(m4.value);
+        var e=Number(m5.value);
+        var sum=a+b+c+d+e;
+        x.textContent=sum;
+    }
+</script>
+</html>

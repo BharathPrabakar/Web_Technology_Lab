@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table id="table1">
+        <tr>
+            <thead>
+                <td>S.no</td>
+                <td>Name</td>
+            </thead>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Name1</td>
+        </tr>
+    </table>
+    <button onclick="Create()">Click</button>
+    <script>
+        let num = 2;
+        function Create()
+        {
+            let table1 = document.getElementById("table1");
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            td1.textContent = num;
+            let td2 = document.createElement("td");
+            td2.textContent = "Name"+num;
+            tr.append(td1);
+            tr.append(td2);
+            tr.style.color = "olive";
+            table1.append(tr);
+            num++;
+        }
+    </script>
+</body>
+</html>

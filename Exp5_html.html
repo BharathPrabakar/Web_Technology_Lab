@@ -1,0 +1,37 @@
+
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <form style="margin-top: 100px;">
+        <label>Enter first number:</label><br>
+        <input id="n1" type="number" name="n1"><br>
+        <br>
+        <label>Enter second number:</label><br>
+        <input id="n2" type="number" name="n2"><br>
+        <br>
+        <button style="margin: 3px;" onclick="add()">Add</button>
+        <button style="margin: 3px;" onclick="sub()">Sub</button>
+        <button style="margin: 3px;" onclick="mul()">Multiply</button>
+    </form>
+    </center>
+</body>
+<script>
+    let x=document.getElementById("n1").value;
+    let y=document.getElementById("n2").value;
+    function add()
+    {
+        let query = `add/?val1=${x}&val2=${y}`;
+        try {
+            const response = fetch(query);
+            if(!response.ok){
+                console.log("An error occurred");
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }
+</script>
+</html>

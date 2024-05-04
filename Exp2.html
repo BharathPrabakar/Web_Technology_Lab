@@ -1,0 +1,247 @@
+<html >
+<head>
+<title>CGPA Calculator</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: gray;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color:wheat;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+#input{
+    width:200px;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#table-container {
+    text-align: center;
+    margin-top: 20px;
+}
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: solid black;
+    background-color:black;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: transparent;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+}
+
+input[type="text"], input[type="number"] {
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+    width: calc(100% - 16px);
+}
+
+.grade-input {
+    text-transform: uppercase;
+}
+
+.grade-input:focus {
+    border-color: #4CAF50;
+}
+
+.grade-input::placeholder {
+    color: #aaa;
+}
+
+.result {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+
+</style>
+</head>
+<body id="body">
+
+<div class="container">
+    <h1>CGPA Calculator</h1>
+
+    <div id="table-container">
+        <label for="name" >SUBJECT:</label>
+        <input type="number" placeholder="enter the number of subjects in this semester" id="sub" style="margin-bottom: 20px; width:50vh"><br><br>
+        <button onclick="addSemester()">Add Semester</button>
+        <button onclick="calculateCGPA()">Calculate CGPA</button><br>
+    </div>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+let semesterCount = 0;
+
+function addSemester() {
+
+    const container = document.getElementById("table-container");
+    semesterCount++;
+
+    const semc = document.createElement("h1");
+    semc.textContent="Semester: "+semesterCount;
+
+    const table = document.createElement("table");
+    table.id = "semester-" + semesterCount;
+
+    const headerRow = document.createElement("tr");
+    const header1 = document.createElement("th");
+
+    header1.textContent = "Subject";
+    const header2 = document.createElement("th");
+    header2.textContent = "Grade";
+    const header3 = document.createElement("th");
+    header3.textContent = "Credit";
+ 
+    container.appendChild(semc);
+    headerRow.appendChild(header1);
+    headerRow.appendChild(header2);
+    headerRow.appendChild(header3);
+    table.appendChild(headerRow);
+
+    const subjectsCount = document.getElementById("sub").value;
+    if (isNaN(subjectsCount) || subjectsCount <= 0) {
+        alert("Invalid number of subjects. Please enter a valid number.");
+        return;
+    }
+
+    for (let i = 1; i <= subjectsCount; i++) {
+        const row = document.createElement("tr");
+        const subjectCell = document.createElement("td");
+        subjectCell.textContent = "subject"+i;
+        const gradeCell = document.createElement("td");
+        const gradeInput = document.createElement("input");
+        gradeInput.type = "text";
+        gradeInput.classList.add("grade-input");
+        gradeInput.setAttribute("onblur", "validateInputs()");
+        gradeCell.appendChild(gradeInput);
+        const creditCell = document.createElement("td");
+        const creditInput = document.createElement("input");
+        creditInput.type = "number";
+        creditInput.min = 0;
+        creditInput.step = 0.5;
+        creditInput.setAttribute("onblur", "validateInputs()");
+        creditCell.appendChild(creditInput);
+
+        row.appendChild(subjectCell);
+        row.appendChild(gradeCell);
+        row.appendChild(creditCell);
+        table.appendChild(row);
+    }
+
+    container.appendChild(table);
+}
+
+function calculateGPA(semesterTable) {
+     let totalCredit = 0;
+    let totalGradePoints = 0;
+
+    const rows = semesterTable.querySelectorAll("tr");
+    rows.forEach((row, index) => {
+        if (index !== 0) {
+            const gradeInput = row.querySelector("input[type='text']");
+            const creditInput = row.querySelector("input[type='number']");
+
+            const grade = gradeInput.value.trim();
+            const credit = parseFloat(creditInput.value);
+
+            let gradePoint;
+            switch (grade.toUpperCase()) {
+                case "O":
+                    gradePoint = 10.0;
+                    break;
+                case "A+":
+                    gradePoint = 9.0;
+                    break;
+                case "A":
+                    gradePoint = 8.0;
+                    break;
+                case "B+":
+                    gradePoint = 7.0;
+                    break;
+                case "B":
+                    gradePoint = 6.0;
+                    break;
+                case "C":
+                    gradePoint = 0.0;
+                    break;
+                default:
+                    gradePoint = 0.0;
+                    break;
+            }
+
+            totalCredit += credit;
+            totalGradePoints += gradePoint * credit;
+        }
+    });
+
+    return totalGradePoints / totalCredit;
+}
+
+
+
+function calculateCGPA() {
+const tables = document.querySelectorAll("table");
+    let cgpaSum = 0;
+
+    let result = "";
+    tables.forEach((table, index) => {
+        const semesterGPA = calculateGPA(table);
+        cgpaSum += semesterGPA;
+        const cgpa = cgpaSum / (index + 1);
+        result += "Semester " + (index + 1) + " GPA: " + semesterGPA.toFixed(2) + ", CGPA: " + cgpa.toFixed(2) + "<br>";
+    });
+
+    document.getElementById("result").innerHTML = result;
+}
+
+function validateInputs() {
+     const inputs = document.querySelectorAll("input[type='text'], input[type='number']");
+    inputs.forEach(input => {
+        if (input.value.trim() === "") {
+            input.style.borderColor = "red";
+        } else {
+            input.style.borderColor = "#ddd";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
