@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            background-color: white;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'poppins', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 8%;
+            margin-left: 5%;
+        }
+
+
+        #form {
+            width: 400px;
+            margin: 10vh auto 0 auto;
+            background-color: #77c5c5;
+            border-radius: 5px;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #29292b;
+        }
+
+        #form button {
+            background-color: #454591;
+            color: white;
+            border: 1px solid #434397;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 20px 0px;
+            cursor: pointer;
+            font-size: 20px;
+            width: 100%;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            border-radius: 5px;
+            font-size: 20px;
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid rgb(34, 193, 195);
+        }
+
+        .input-group input:focus {
+            outline: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="centered">
+                <!-- <form id="form" action="http://localhost:4001/login" method="get"> -->
+                <form id="form" action="http://localhost:4445/login" method="post">
+                    <h1>Personal Details</h1>
+                    <div class="input-group">
+                        <label for="rollno">Roll Number</label>
+                        <input type="text" id="rollno" name="rollno" placeholder="">
+
+                    </div>
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="name" name="name">
+
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email id</label>
+                        <input type="text" id="email" name="email">
+
+                    </div>
+                    <div class="input-group">
+                        <label for="Mobile">Mobile Number</label>
+                        <input type="text" id="mobile" name="mobile">
+
+                    </div>
+                    <div class="input-group">
+                        <label for="Age">Age</label>
+                        <input type="number" id="age" name="age">
+
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
